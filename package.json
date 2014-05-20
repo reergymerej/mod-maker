@@ -1,0 +1,28 @@
+{
+  "name": "mod-maker",
+  "version": "0.0.0",
+  "description": "A utility to make modules with controlled variables",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reergymerej/mod-maker.git"
+  },
+  "keywords": [
+    "module",
+    "pattern",
+    "private",
+    "variables"
+  ],
+  "author": "Jeremy Greer <jeremy.greer.atl@gmail.com> (http://jeremygreer.herokuapp.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reergymerej/mod-maker/issues"
+  },
+  "homepage": "https://github.com/reergymerej/mod-maker"
+}
