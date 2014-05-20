@@ -7,22 +7,24 @@
     "test": "test"
   },
   "scripts": {
-    "test": "test"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/reergymerej/mod-maker.git"
   },
   "keywords": [
-    "module",
-    "pattern",
-    "private",
-    "variables"
+    "module pattern",
+    "private variables"
   ],
   "author": "Jeremy Greer <jeremy.greer.atl@gmail.com> (http://jeremygreer.herokuapp.com/)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/reergymerej/mod-maker/issues"
   },
-  "homepage": "https://github.com/reergymerej/mod-maker"
+  "homepage": "https://github.com/reergymerej/mod-maker",
+  "devDependencies": {
+    "mocha": "~1.19.0",
+    "chai": "~1.9.1"
+  }
 }
