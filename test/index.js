@@ -22,6 +22,7 @@ describe('mod', function () {
             j: 123,
             k: true,
             l: function () {},
+            another: function another () {},
             m: [1, 2, 3],
             n: { foo: 'bar' },
             o: function SomeThing () {},
@@ -48,13 +49,21 @@ describe('mod', function () {
             expect(mod.i).not.to.exist;
         });
 
-        it('should provide getters for the properties', function () {
-            expect(mod.get('i')).to.equal(foo.i);
-        });
+        describe('getting', function () {
+            it('should provide getters for the properties', function () {
+                expect(mod.get('i')).to.equal(foo.i);
+            });
 
-        it('should not return values by reference', function () {
-            var m = mod.get('m').splice(1,1);
-            expect(mod.get('m')).to.include.members([1, 2, 3]);
+            it('should run functions instead of returning them', function () {
+                expect(function () {
+                    mod.get('o');
+                }).not.to.throw(Error);
+            });
+
+            it('should not return values by reference', function () {
+                var m = mod.get('m').splice(1,1);
+                expect(mod.get('m')).to.include.members([1, 2, 3]);
+            });
         });
 
         it('should provide setters for the properties', function () {
@@ -75,7 +84,9 @@ describe('mod', function () {
                 expect(mod.field('j')).to.eql({
                     type: 'Number',
                     initial: 123,
-                    value: 123
+                    value: 123,
+                    anonymousFn: false,
+                    isConstructor: false
                 });
             });
 
@@ -152,36 +163,36 @@ describe('mod', function () {
             describe('initial values', function () {
                 describe('when specifying only a type', function () {
                     it('String should set no initial value', function () {
-                        expect(mod.field('a').type).to.equal(undefined);
+                        expect(mod.field('a').initial).to.equal(undefined);
                     });
 
                     it('Number should set no initial value', function () {
-                        expect(mod.field('b').type).to.equal(undefined);
+                        expect(mod.field('b').initial).to.equal(undefined);
                     });
 
                     it('Boolean should set no initial value', function () {
-                        expect(mod.field('c').type).to.equal(undefined);
+                        expect(mod.field('c').initial).to.equal(undefined);
                     });
 
                     it('Function should set no initial value', function () {
-                        expect(mod.field('f').type).to.equal(undefined);
+                        expect(mod.field('f').initial).to.equal(undefined);
                     });
 
                     it('Array should set no initial value', function () {
-                        expect(mod.field('g').type).to.equal(undefined);
+                        expect(mod.field('g').initial).to.equal(undefined);
                     });
 
                     it('Object should set no initial value', function () {
-                        expect(mod.field('h').type).to.equal(undefined);
+                        expect(mod.field('h').initial).to.equal(undefined);
                     });
 
                     it('anonymous functions should set no initial value', function () {
-                        expect(mod.field('l').type).to.equal(undefined);
+                        expect(mod.field('l').initial).to.equal(undefined);
                     });
 
                     it('named functions should set no initial value', function () {
-                        expect(mod.field('o').type).to.equal(undefined);
-                    });                 
+                        expect(mod.field('o').initial).to.equal(undefined);
+                    });
                 });
             });
         });
